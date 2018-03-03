@@ -10,7 +10,7 @@ import { Layout, Button } from 'antd';
 
 import NavBar from './components/NavBar'
 import MapContainer from './containers/MapContainer'
-
+import PopOverContainer from './containers/PopOverContainer'
 
 import store from './store/store'
 
@@ -33,6 +33,7 @@ export default class App extends Component {
           <Layout style={{minHeight: "100vh"}}>
             <NavBar />
             <Content style={{width: "100%"}}>
+              <PopOverContainer />
               <MapContainer/>
             </Content>
           </Layout>
