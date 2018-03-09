@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import DATA_SAMP from './sampleJessData.json'
+
 // import firebase connection object
 //import { BASE } from './base'
 
@@ -30,6 +32,9 @@ export default class App extends Component {
   render() {
     return (
         <Layout className="App">
+          <div>
+              {DATA_SAMP.response.results.map(item => item.alternatives[0].transcript).map(item => <p>{item}</p>)}
+          </div>
           <Layout style={{minHeight: "100vh"}}>
             <NavBar />
             <Content style={{width: "100%"}}>
