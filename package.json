@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@google/maps": "^0.4.5",
+    "algoliasearch": "^3.26.0",
     "antd": "^3.2.0",
     "firebase": "^4.10.1",
     "geofire": "^4.1.2",
@@ -28,7 +29,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "aws s3 sync build/ s3://rippa-pissa-client-app --delete --profile rippapissa",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "xml-js": "^1.6.2"
   }
 }

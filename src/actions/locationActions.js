@@ -1,3 +1,5 @@
+import algoliasearch from 'algoliasearch';
+
 export const addToLocation = (location) => {
     console.log("adding location", location)
     return {
@@ -19,6 +21,13 @@ export const isDraggingArea = () => {
     }
 }
 
+export const adjustUrgencyDistance = (value) => {
+    return {
+        type: 'CHANGE_URGENCY_DISTANCE',
+        payload: value
+    }
+}
+
 export const isDraggingPoint = () => {
     return {
         type: 'DRAG_POINT_START'
@@ -34,6 +43,20 @@ export const isEndDraggingArea = () => {
 export const isEndDraggingPoint = () => {
     return {
         type: 'DRAG_POINT_END'
+    }
+}
+
+export const closeInformationPanel = () => {
+    return {
+        type: 'SHOW_INFORMATION_PANEL',
+        payload: false
+    }
+}
+
+export const selectItemOnMap = (id) => {
+    return {
+        type: 'SELECT_ITEM',
+        payload: id
     }
 }
 
@@ -69,5 +92,16 @@ export const fetchLocation = () => {
     return {
         type:"FETCH_LOCATION",
         payload: getLocation
+    }
+}
+
+//'aroundLatLng' => '40.71, -74.01'
+export const fetchItems = (location, radius) => {
+    var algoliaClient = algoliasearch('KXR28GEETN', 'bfa1bfd8356052f790daaaf65cbf41ae');
+    var index = algoliaClient.initIndex('rippa-pissa');
+    const fetchItemsFromAlgolia = () => index.search({query: '', aroundLatLng: `${parseFloat(location.lat)}, ${parseFloat(location.lng)}`,aroundRadius: radius||1000,})
+    return {
+        type:"FETCH_ITEMS",
+        payload: fetchItemsFromAlgolia
     }
 }

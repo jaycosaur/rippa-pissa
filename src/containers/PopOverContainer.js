@@ -1,11 +1,14 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from "react-redux"
 import { Card, Row, Col, Icon, Avatar, Rate, Tabs } from 'antd'
+
+import { closeInformationPanel } from './../actions/locationActions'
+
 const TabPane = Tabs.TabPane;
 
-export default class PopOverContainer extends Component {
+class PopOverContainer extends Component {
     state={
-        currentPage: 1,
-        isShowing: true
+        currentPage: 1
     }
     render() {
         const cardActions = [
@@ -23,19 +26,20 @@ export default class PopOverContainer extends Component {
                 case 3:
                     return <ThirdTab />
             }}
-        
+        const { selectedItem } = this.props.location
         return (
-            this.state.isShowing&&<div style={{position: "absolute", zIndex: 1000, marginLeft: 30, marginTop: 30}} > 
+            (selectedItem&&selectedItem.showItemInformation)?
+            (<div style={{position: "absolute", zIndex: 1000, marginLeft: 30, marginTop: 30}} > 
                 <Card 
                     bodyStyle={{width: 400, height: 450, padding: 0}} 
-                    title="Level 4 Bathroom Westfield Woden" 
-                    extra={<Avatar size="small" icon="cross" onClick={e => this.setState({isShowing: false})}/>}
+                    title={selectedItem.info.Name}
+                    extra={<Avatar size="small" icon="cross" onClick={e => this.props.dispatch(closeInformationPanel())}/>}
                     actions= {cardActions}
                     bordered={false}
                     >
                     {tabSelect()}
                 </Card>
-            </div>
+            </div>):null
         )
     }
 }
@@ -140,7 +144,6 @@ const ItemRatingRow = (props) =>
     </Row>
 
 class UserOverallRatingGrid extends Component {
-
     state={
         isHovered: false,
         isSelected: false,
@@ -213,3 +216,9 @@ class UserOverallRatingGrid extends Component {
         )
     }
 }
+
+export default connect((store) => {
+    return {
+      location: store.location,
+    }
+  })(PopOverContainer)

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { compose, withProps, withHandlers } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, Circle, Icon } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, Circle } from "react-google-maps"
 
 import { connect } from "react-redux"
-import { setLocation, isDraggingArea, isDraggingPoint } from './../actions/locationActions'
+import { setLocation, isDraggingArea, isDraggingPoint, selectItemOnMap, fetchItems } from './../actions/locationActions'
+import { toggleSideBar } from './../actions/displayActions'
 
-import sampleData from './../sampleDataJSON'
 
 const mapStyle = [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}]
 
@@ -14,7 +14,7 @@ const MyMapComponent = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhoMHclnf20_-iTRhjYaIwfYKjYazbQU&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: (window.innerHeight-64)  }} />,
+    containerElement: <div style={{ height: (window.innerHeight), }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withHandlers(() => {
@@ -51,33 +51,43 @@ const MyMapComponent = compose(
                     fullScreenControl: false,
                     zoomControl: false
                 }}
-                onClick={e => {this.props.dispatch(setLocation(e.latLng.toJSON()))}}
+                onClick={e => {
+                  this.props.dispatch(setLocation(e.latLng.toJSON()))
+                  this.props.dispatch(fetchItems(e.latLng.toJSON(),this.props.location.urgency.distance ))
+                }}
                 ref={e => {this.props.onMapMounted(e);}}
             >
                 <Circle 
                     visible={this.props.location.showArea} 
                     draggable={true} 
                     onDragStart={e => this.props.dispatch(isDraggingArea())} 
-                    onDragEnd={e => this.props.dispatch(setLocation(e.latLng.toJSON()))} 
+                    onDragEnd={e => {
+                      this.props.dispatch(setLocation(e.latLng.toJSON()))
+                      this.props.dispatch(fetchItems(e.latLng.toJSON(),this.props.location.urgency.distance))
+                    }} 
                     center={ this.props.location.location } 
-                    radius = {1000} 
+                    radius = {this.props.location.urgency.distance} 
                     options={{fillColor:!this.props.location.areaIsDragging?"#1a9ed9":"#fff"}}
                     />
                 <Marker 
                     visible={this.props.location.showPoint} 
                     draggable={true} 
                     onDragStart={e => this.props.dispatch(isDraggingPoint())} 
-                    onDragEnd={e => this.props.dispatch(setLocation(e.latLng.toJSON()))} 
+                    onDragEnd={e => {
+                      this.props.dispatch(setLocation(e.latLng.toJSON()))
+                      this.props.dispatch(fetchItems(e.latLng.toJSON(),this.props.location.urgency.distance))
+                    }} 
                     position={ this.props.location.location } />
-                {sampleData.map((item, key) =>
+                
+                {this.props.location.items&&this.props.location.items.hits.map((item, key) =>
                     <Marker 
-                        position={{lat:item["Latitude"],lng:item["Longitude"]}} 
-                        icon={
-                            <Icon
-                                url="http://webiconspng.com/wp-content/uploads/2017/09/Toilet-Paper-PNG-Image-22674.png"
-                                point = {{x:24, y:24}}
-                                scaledSize= {{x:24, y:24}}
-                            />}
+                        position={{lat:item._geoloc.lat,lng:item._geoloc.lng}}
+                        key={item.ToiletID}
+                        onClick={e => {
+                          this.props.dispatch(selectItemOnMap(key)) 
+                          this.props.dispatch((toggleSideBar(true)))
+                        }}
+                        icon={`http://maps.google.com/mapfiles/ms/micons/${this.props.location.selectedItem&&(this.props.location.selectedItem.info.ToiletID===item.ToiletID)?"green-dot":"toilets"}.png`}
                         />)
                 }
             </GoogleMap>

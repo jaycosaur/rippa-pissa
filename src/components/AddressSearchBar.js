@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Input, Col, Row, Form } from 'antd';
+import { Input, Form } from 'antd';
 import { setLocation } from './../actions/locationActions'
 import { connect } from "react-redux"
-
 
 const googleMapsClient = require('@google/maps').createClient({
     key: "AIzaSyDGhoMHclnf20_-iTRhjYaIwfYKjYazbQU",
@@ -56,17 +55,16 @@ class AddressSearchBar extends Component {
   
     render(){
       return (
-        <span style={{display: "flex", alignItems: "center"}}>
-          <Form onSubmit={this.onButtonClick}>
+          <Form onSubmit={this.onButtonClick} style={{width: "100%"}}>
             <Input.Search 
               size="large" 
+              autoFocus
               placeholder="Enter an address" 
               onSearch={e => this.fetchAddress()} 
               enterButton={this.state.formValue&&true}
               onChange={this.handleChange} 
               value={this.state.formValue}/>
           </Form>
-        </span>
       )
     }
   }
