@@ -8,7 +8,7 @@ const RefreshIcon = (props) =>
           onClick = {(e) => props.dispatch(fetchItems(props.location.location,props.location.urgency.distance))}
           icon={!props.location.isFetchingItems?(props.location.location?"check-circle":"exclamation-circle"):"loading"}
           size="large" 
-          style={{ backgroundColor: props.location.items?'#87d068':null,cursor: "pointer" }}
+          style={{ backgroundColor: props.location.items?'#49CE75':null,cursor: "pointer" }}
           />
   
 export default connect((store) => {

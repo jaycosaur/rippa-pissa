@@ -1,4 +1,13 @@
-export default(state = {urgency: {distance: 500}, location: null, lastUpdated: null, isFetching: false, error: false, areaIsDragging: false, showArea: true, showPoint: true}, action) => {
+export default(state = {
+    urgency: {distance: 500}, 
+    location: {lat: -35.282, lng: 149.129}, 
+    lastUpdated: null, 
+    isFetching: false, 
+    error: false,
+    areaIsDragging: false, 
+    showArea: true, 
+    showPoint: true}, 
+    action) => {
     switch(action.type) {
         case 'SET_LOCATION':
             return {...state, location: action.payload, isGPS: false, showArea: true, showPoint: true, areaIsDragging: false, pointIsDragging: false}

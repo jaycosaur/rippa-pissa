@@ -105,3 +105,13 @@ export const fetchItems = (location, radius) => {
         payload: fetchItemsFromAlgolia
     }
 }
+
+export const fetchClosestItems = (location, radius) => {
+    var algoliaClient = algoliasearch('KXR28GEETN', 'bfa1bfd8356052f790daaaf65cbf41ae');
+    var index = algoliaClient.initIndex('rippa-pissa');
+    const fetchItemsFromAlgolia = () => index.search({query: '', aroundLatLng: `${parseFloat(location.lat)}, ${parseFloat(location.lng)}`})
+    return {
+        type:"FETCH_ITEMS",
+        payload: fetchItemsFromAlgolia
+    }
+}

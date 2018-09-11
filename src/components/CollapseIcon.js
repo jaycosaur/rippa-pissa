@@ -9,7 +9,7 @@ const RefreshIcon = (props) =>
           onClick = {(e) => props.dispatch(toggleSideBar())}
           icon={props.display.showSideBar?"menu-fold":"menu-unfold"}
           size="large" 
-          style={{ backgroundColor:'#87d068',cursor: "pointer" }}
+          style={{ backgroundColor:'#49CE75',cursor: "pointer" }}
           />
   
 export default connect((store) => {

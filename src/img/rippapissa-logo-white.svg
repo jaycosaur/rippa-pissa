@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1063 231">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-rippapissa-logo-white);
+      }
+
+      .cls-2, .cls-4, .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 10px;
+      }
+
+      .cls-4 {
+        font-size: 250px;
+      }
+
+      .cls-4, .cls-5 {
+        font-family: Impact;
+        letter-spacing: 0.03em;
+      }
+
+      .cls-5 {
+        font-size: 190px;
+      }
+    </style>
+    <clipPath id="clip-rippapissa-logo-white">
+      <rect width="1063" height="231"/>
+    </clipPath>
+  </defs>
+  <g id="rippapissa-logo-white" class="cls-1">
+    <g id="Group_6" data-name="Group 6" transform="translate(-587 -616.865)">
+      <circle id="Ellipse_5" data-name="Ellipse 5" class="cls-2" cx="21" cy="21" r="21" transform="translate(744.412 635)"/>
+      <path id="Subtraction_2" data-name="Subtraction 2" class="cls-2" d="M604.941,696.335a10.294,10.294,0,0,1-10.286-9.882h-.008V604.924a1.647,1.647,0,0,0-3.294,0v81.529h-.008a10.294,10.294,0,0,1-20.572,0h-.008v-126a1.647,1.647,0,1,0-3.294,0v50.588H567a16,16,0,0,1-16-16V554.865a16,16,0,0,1,16-16h52a16,16,0,0,1,16,16v40.176a16,16,0,0,1-16,16h-.471V560.453a1.647,1.647,0,1,0-3.294,0v126h-.008a10.294,10.294,0,0,1-10.286,9.882Z" transform="translate(172 139.605)"/>
+      <g id="Group_3" data-name="Group 3" transform="translate(790.529 693.717)">
+        <ellipse id="Ellipse_6" data-name="Ellipse 6" class="cls-2" cx="8.235" cy="7.024" rx="8.235" ry="7.024" transform="translate(0 59)"/>
+        <rect id="Rectangle_3" data-name="Rectangle 3" class="cls-2" width="16.471" height="66.024" transform="translate(0 0)"/>
+      </g>
+      <g id="Group_4" data-name="Group 4" transform="translate(723 693.717)">
+        <ellipse id="Ellipse_6-2" data-name="Ellipse 6" class="cls-2" cx="8.235" cy="7.024" rx="8.235" ry="7.024" transform="translate(0 59)"/>
+        <rect id="Rectangle_3-2" data-name="Rectangle 3" class="cls-2" width="16.471" height="66.024" transform="translate(0 0)"/>
+      </g>
+    </g>
+    <g id="Group_7" data-name="Group 7">
+      <circle id="Ellipse_1" data-name="Ellipse 1" class="cls-2" cx="17.454" cy="17.454" r="17.454" transform="translate(670 17.856)"/>
+      <circle id="Ellipse_2" data-name="Ellipse 2" class="cls-2" cx="17.454" cy="17.454" r="17.454" transform="translate(670 52.764)"/>
+      <ellipse id="Ellipse_3" data-name="Ellipse 3" class="cls-2" cx="17.454" cy="15.689" rx="17.454" ry="15.689" transform="translate(670 119.264)"/>
+      <rect id="Rectangle_1" data-name="Rectangle 1" class="cls-2" width="34.908" height="64.34" transform="translate(670 70.56)"/>
+      <circle id="Ellipse_4" data-name="Ellipse 4" class="cls-2" cx="14.374" cy="14.374" r="14.374" transform="translate(673.422 192.395)"/>
+      <rect id="Rectangle_2" data-name="Rectangle 2" class="cls-2" width="28.748" height="64.34" transform="translate(673.422 142.429)"/>
+    </g>
+    <path id="Path_1" data-name="Path 1" class="cls-3" d="M584.722,777.248s33.821-.5,33.413,74.859" transform="translate(122.26 -645.339)"/>
+    <text id="R" class="cls-4" transform="translate(9 216)"><tspan x="0" y="0">R</tspan></text>
+    <text id="P" class="cls-4" transform="translate(213 216)"><tspan x="0" y="0">P</tspan></text>
+    <text id="P-2" data-name="P" class="cls-4" transform="translate(322 216)"><tspan x="0" y="0">P</tspan></text>
+    <text id="A" class="cls-4" transform="translate(428 216)"><tspan x="0" y="0">A</tspan></text>
+    <text id="S" class="cls-5" transform="translate(715 217)"><tspan x="0" y="0">S</tspan></text>
+    <text id="P-3" data-name="P" class="cls-4" transform="translate(545 216)"><tspan x="0" y="0">P</tspan></text>
+    <text id="S-2" data-name="S" class="cls-4" transform="translate(799 216)"><tspan x="0" y="0">S</tspan></text>
+    <text id="A-2" data-name="A" class="cls-4" transform="translate(917 216)"><tspan x="0" y="0">A</tspan></text>
+  </g>
+</svg>

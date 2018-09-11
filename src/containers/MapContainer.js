@@ -10,14 +10,14 @@ class MapContainer extends Component {
     constructor(props){
         super(props)
         this.state = {
-            mapHeight: window.innerHeight - 64,
+            mapHeight: window.innerHeight,
             mapWidth: window.innerWidth 
         }
     }
     resize = (event) => {
         const dimObj = {
             width: event.target.innerWidth,
-            height: event.target.innerHeight-64
+            height: event.target.innerHeight
         }
         this.props.dispatch(updateMapDimensions(dimObj))
     }
@@ -35,15 +35,14 @@ class MapContainer extends Component {
       }
     render() {
         return (
-        <div>
             <MainMap mapHeight = {this.state.mapHeight} mapWidth = {this.state.mapWidth}/>
-        </div>
         )
     }
 }
 
 export default connect((store) => {
     return {
-      map: store.map
+      map: store.map,
+      display: store.display
     }
   })(MapContainer)

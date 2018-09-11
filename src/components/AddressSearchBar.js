@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Input, Form } from 'antd';
 import { setLocation } from './../actions/locationActions'
+import { blurTopSearchBar } from './../actions/displayActions'
 import { connect } from "react-redux"
 
 const googleMapsClient = require('@google/maps').createClient({
@@ -44,6 +45,7 @@ class AddressSearchBar extends Component {
             formValue: response.json.results[0].formatted_address
           })
           this.props.dispatch(setLocation(response.json.results[0].geometry.location))
+          this.props.dispatch(blurTopSearchBar())
         })
         .catch((err) => {
           console.log(err);
@@ -62,7 +64,8 @@ class AddressSearchBar extends Component {
               placeholder="Enter an address" 
               onSearch={e => this.fetchAddress()} 
               enterButton={this.state.formValue&&true}
-              onChange={this.handleChange} 
+              onChange={this.handleChange}
+              onBlur={e=> this.props.dispatch(blurTopSearchBar())}
               value={this.state.formValue}/>
           </Form>
       )

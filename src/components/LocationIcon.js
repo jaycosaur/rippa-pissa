@@ -8,7 +8,7 @@ const LocationIcon = (props) =>
           onClick = {(e) => props.dispatch(fetchLocation())} 
           icon={!props.location.isFetching?"environment-o":"loading"}
           size="large" 
-          style={{ backgroundColor: props.location.isGPS?'#87d068':null, cursor: "pointer" }}
+          style={{ backgroundColor: props.location.isGPS?'#49CE75':null, cursor: "pointer" }}
           />
   
 export default connect((store) => {
